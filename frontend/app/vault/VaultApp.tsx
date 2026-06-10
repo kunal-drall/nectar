@@ -371,7 +371,7 @@ export default function VaultApp() {
             >
               Vault Overview
             </PanelLabel>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 16 }}>
               <StatRow label="TVL" value={tvlDisplay} />
               <StatRow label="Share Price" value={priceDisplay} accent={haveState && livePrice > 1.0} />
               <StatRow label="Total Profit" value={profitDisplay} accent={haveState && liveTotalProfit > 0} />
@@ -406,7 +406,7 @@ export default function VaultApp() {
           {connected && (
             <Card accent style={{ padding: 24 }}>
               <PanelLabel accent>Your Position</PanelLabel>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 16 }}>
                 <StatRow label="Vault Shares" value={(vaultShares / 1e7).toFixed(2)} />
                 <StatRow label="USDC Value" value={`$${formatUSDC(vaultUsdcValue)}`} accent />
                 <StatRow label="USDC Balance" value={wallet?.usdcBalance ?? "0.00"} />
@@ -448,7 +448,7 @@ export default function VaultApp() {
 
               {isKeeper ? (
                 <>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12, marginBottom: 12 }}>
                     <StatRow label="Name" value={keeperInfo?.name || "—"} />
                     <StatRow label="Stake" value={`$${stakeUsdc.toLocaleString(undefined, { maximumFractionDigits: 2 })} USDC`} accent />
                     <StatRow

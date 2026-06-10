@@ -120,6 +120,11 @@ body {
   .liq-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
+/* Hide auxiliary chrome (e.g. the subnav's legacy-view link) on phones */
+@media (max-width: 640px) {
+  .hide-mobile { display: none !important; }
+}
+
 /* Noise overlay */
 .noise::after {
   content: "";

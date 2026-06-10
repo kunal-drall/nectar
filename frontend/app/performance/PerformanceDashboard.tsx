@@ -271,7 +271,7 @@ export default function PerformanceDashboard({ initialData }: Props) {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(340px, 100%), 1fr))",
           gap: 24,
           marginBottom: 24,
         }}
@@ -319,7 +319,7 @@ export default function PerformanceDashboard({ initialData }: Props) {
                       {k.active ? "ACTIVE DRAW" : "IDLE"}
                     </Pill>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))", gap: 12 }}>
                     <KeeperMetric label="Stake" value={k.stake > 0 ? `$${formatUSDC(k.stake)}` : "—"} />
                     <KeeperMetric label="Fills" value={`${k.fills}/${k.exec}`} />
                     <KeeperMetric

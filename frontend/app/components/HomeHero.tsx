@@ -114,9 +114,9 @@ export default function HomeHero() {
               <Btn href="/dashboard">Live dashboard →</Btn>
               <Btn href="https://github.com/Nectar-Network/nectar" target="_blank">GitHub</Btn>
             </div>
-            <div style={{ display: "flex", gap: 0, borderTop: "1px solid var(--border)", paddingTop: 22 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "18px 0", borderTop: "1px solid var(--border)", paddingTop: 22 }}>
               {strip.map(([k, v], i) => (
-                <div key={k} style={{ paddingRight: 32, paddingLeft: i ? 32 : 0, borderRight: i < 2 ? "1px solid var(--border)" : "none" }}>
+                <div key={k} style={{ paddingRight: 24, paddingLeft: i ? 24 : 0, borderRight: i < 2 ? "1px solid var(--border)" : "none" }}>
                   <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-mute)", marginBottom: 7 }}>{k}</div>
                   <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 22, color: "var(--text)", fontVariantNumeric: "tabular-nums" }}>{v}</div>
                 </div>

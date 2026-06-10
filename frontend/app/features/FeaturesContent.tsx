@@ -392,6 +392,9 @@ export default function FeaturesContent() {
           .features-flow { grid-template-columns: 1fr 1fr; }
           .features-two, .features-econ { grid-template-columns: 1fr; }
         }
+        @media (max-width: 460px) {
+          .features-flow { grid-template-columns: 1fr; }
+        }
       `}</style>
       <Header />
       <Flow />
