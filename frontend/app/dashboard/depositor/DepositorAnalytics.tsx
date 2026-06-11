@@ -115,7 +115,7 @@ export default function DepositorAnalytics({
   async function lookup(address: string) {
     const addr = address.trim().toUpperCase();
     if (!G_ADDR.test(addr)) {
-      setErr("Enter a valid Stellar address (G… 56 chars).");
+      setErr("Enter a valid Stellar address — starts with G, 56 characters.");
       return;
     }
     setErr(null);
@@ -134,7 +134,7 @@ export default function DepositorAnalytics({
       });
       setLooked(true);
     } catch {
-      setErr("Lookup failed — the chain read is unavailable right now.");
+      setErr("Lookup failed — couldn't reach the network. Please try again in a moment.");
     } finally {
       setLoading(false);
     }
@@ -223,18 +223,18 @@ export default function DepositorAnalytics({
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="G…"
+              placeholder="Stellar address (G…)"
+              aria-label="Stellar wallet address"
               spellCheck={false}
               autoCapitalize="characters"
               style={{
                 ...mono(12, "var(--accent)"),
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
-                borderRadius: 2,
+                borderRadius: "var(--r-sharp)",
                 padding: "8px 12px",
                 width: 240,
                 maxWidth: "60vw",
-                outline: "none",
               }}
             />
             <button
@@ -250,7 +250,7 @@ export default function DepositorAnalytics({
                 opacity: loading ? 0.6 : 1,
               }}
             >
-              {loading ? "…" : "Look up"}
+              {loading ? "Looking up…" : "Look up"}
             </button>
             <button
               type="button"

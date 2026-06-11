@@ -42,10 +42,10 @@ export default function MonitorFeed() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
           <div>
-            <p className="text-xs font-mono mb-2" style={{ color: "var(--text-dim)", letterSpacing: "0.12em" }}>
+            <p className="text-xs font-mono mb-2" style={{ color: "var(--text-dim)", letterSpacing: "0.08em" }}>
               MONITOR
             </p>
-            <h2 className="font-syne font-700" style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "var(--text)" }}>
+            <h2 className="font-syne font-700" style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "var(--text)" }}>
               Pool Position Health
             </h2>
           </div>
@@ -61,7 +61,8 @@ export default function MonitorFeed() {
             style={{ borderColor: "var(--border)", background: "var(--card-fill)", padding: "40px 24px", textAlign: "center", borderRadius: 4 }}
           >
             <span className="text-xs font-mono" style={{ color: "var(--text-dim)" }}>
-              No positions monitored — connect a running keeper to stream live Blend pool health here.
+              No positions monitored yet. Live Blend pool health appears here once a keeper is streaming —{" "}
+              <a href="/features" style={{ color: "var(--accent)" }}>see how keepers work →</a>
             </span>
           </div>
         ) : (
@@ -78,7 +79,7 @@ export default function MonitorFeed() {
               {positions.map((p, i) => (
                 <div
                   key={i}
-                  className="grid grid-cols-3 px-4 py-4 text-xs font-mono border-b last:border-b-0 transition-all duration-500"
+                  className="grid grid-cols-3 px-4 py-4 text-xs font-mono border-b last:border-b-0 transition-all duration-200"
                   style={{ borderColor: "var(--border)", background: p.hf < 1.0 ? "var(--red-fill)" : "transparent" }}
                 >
                   <span style={{ color: "var(--accent)" }}>{shortAddr(p.address)}</span>

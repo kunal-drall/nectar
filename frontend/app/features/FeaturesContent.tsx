@@ -23,9 +23,9 @@ function Header() {
         <h1
           style={{
             fontFamily: "var(--font-display)",
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: "clamp(2.4rem, 5vw, 3.6rem)",
-            lineHeight: 1.05,
+            lineHeight: 1.12,
             letterSpacing: "-0.015em",
             color: "var(--text)",
             margin: "0 0 22px",
@@ -95,16 +95,8 @@ function Flow() {
           title="From deposit to liquidation, end to end"
         />
         <div className="features-flow">
-          {STEPS.map((s, i) => (
-            <div
-              key={s.n}
-              style={{
-                padding: "4px 20px 4px 0",
-                borderRight:
-                  i < STEPS.length - 1 ? "1px solid var(--border)" : "none",
-                paddingLeft: i ? 20 : 0,
-              }}
-            >
+          {STEPS.map((s) => (
+            <div key={s.n} className="features-flow-item">
               <div
                 style={{
                   fontFamily: "var(--font-display)",
@@ -233,7 +225,7 @@ function Contention() {
               display: "flex",
               alignItems: "center",
               gap: 8,
-              padding: "11px 16px",
+              padding: "12px 16px",
               borderBottom: "1px solid var(--border)",
             }}
           >
@@ -261,7 +253,7 @@ function Contention() {
                 key={i}
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: 11.5,
+                  fontSize: 12,
                   color: l.c,
                 }}
               >
@@ -386,11 +378,18 @@ export default function FeaturesContent() {
     <div>
       <style>{`
         .features-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+        .features-flow-item { padding: 4px 20px; }
+        /* desktop: 5 cols — first in each row (1st, 6th, ...) is flush-left, no divider */
+        .features-flow-item { padding-left: 20px; border-left: 1px solid var(--border); }
+        .features-flow-item:nth-child(5n+1) { padding-left: 0; border-left: none; }
         .features-two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .features-econ { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         @media (max-width: 880px) {
           .features-flow { grid-template-columns: 1fr 1fr; }
           .features-two, .features-econ { grid-template-columns: 1fr; }
+          /* mobile: 2 cols — odd items (01, 03, 05) start a row, flush-left, no divider */
+          .features-flow-item { padding-left: 20px; border-left: 1px solid var(--border); }
+          .features-flow-item:nth-child(odd) { padding-left: 0; border-left: none; }
         }
       `}</style>
       <Header />

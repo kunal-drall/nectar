@@ -37,7 +37,7 @@ export default function ProblemStats() {
           {stats.map((s, i) => (
             <div
               key={i}
-              className="py-8 pr-8 border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0"
+              className="py-8 pr-8 md:pl-8 border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0"
               style={{ borderColor: "var(--border)" }}
             >
               <div

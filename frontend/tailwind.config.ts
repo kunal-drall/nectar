@@ -5,8 +5,15 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        syne: ["Syne", "sans-serif"],
-        mono: ["DM Mono", "monospace"],
+        syne: ["Syne", "Helvetica Neue", "sans-serif"],
+        mono: ["DM Mono", "ui-monospace", "SFMono-Regular", "monospace"],
+      },
+      fontWeight: {
+        "400": "400",
+        "500": "500",
+        "600": "600",
+        "700": "700",
+        "800": "800",
       },
       colors: {
         bg: "hsl(220, 15%, 6%)",

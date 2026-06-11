@@ -372,7 +372,7 @@ function RecentLiquidations({ perf }: { perf: PerformanceData }) {
             color: "var(--text-dim)",
           }}
         >
-          No liquidations recorded yet.
+          No liquidations recorded yet — fills will appear here as keepers liquidate underwater positions.
         </div>
       ) : (
         <div style={{ overflowX: "auto" }} className="thin-scroll">

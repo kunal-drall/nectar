@@ -33,7 +33,7 @@ export default function VaultCTA() {
       <div className="home-wrap" style={{ padding: 0 }}>
         <Card accent style={{ padding: 0 }}>
           <div className="vault-cta-grid">
-            <div style={{ padding: "40px 40px" }}>
+            <div style={{ padding: "40px 32px" }}>
               <Eyebrow style={{ marginBottom: 14 }}>The vault</Eyebrow>
               <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.1rem)", color: "var(--text)", margin: "0 0 16px", letterSpacing: "-0.01em" }}>
                 Deposit USDC. Earn keeper yield.
@@ -43,11 +43,11 @@ export default function VaultCTA() {
                 vault — your shares appreciate against a rising share price. Withdraw anytime.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-                <Btn primary href="/vault">Open the vault</Btn>
+                <Btn primary href="/vault">Go to vault</Btn>
                 <Btn href="/dashboard" small>See the dashboard →</Btn>
               </div>
             </div>
-            <div style={{ borderLeft: "1px solid var(--border)", padding: "32px 28px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 20 }}>
+            <div className="vault-cta-aside" style={{ padding: "40px 32px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 20 }}>
               <div style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
                 <div>
                   <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-mute)", marginBottom: 6 }}>

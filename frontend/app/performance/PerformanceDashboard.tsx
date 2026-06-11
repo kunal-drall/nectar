@@ -155,7 +155,7 @@ export default function PerformanceDashboard({ initialData }: Props) {
     whiteSpace: "nowrap",
   };
   const td: React.CSSProperties = {
-    padding: "11px 16px",
+    padding: "12px 16px",
     fontFamily: "var(--font-mono)",
     fontSize: 12,
     color: "var(--text)",

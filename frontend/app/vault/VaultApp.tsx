@@ -255,7 +255,7 @@ export default function VaultApp() {
         if (updated) setWallet(updated);
       } else {
         setTxStatus("error");
-        setError("Transaction failed on-chain. Check explorer for details.");
+        setError("Transaction failed on-chain. Your funds were not moved — view it on Stellar Expert for the revert reason, then try again.");
       }
     } catch (err) {
       setTxStatus("error");
@@ -484,7 +484,7 @@ export default function VaultApp() {
                   <div style={{ ...mono, fontSize: 11, color: "var(--text-dim)", marginBottom: 12, lineHeight: 1.6 }}>
                     Operate a keeper to liquidate underwater Blend positions. Registration locks
                     {minStakeUsdc > 0 ? ` $${minStakeUsdc.toLocaleString()} USDC ` : " "}
-                    as stake — slashable on draw timeout.
+                    as stake — forfeited if you draw capital and miss the repayment timeout.
                   </div>
                   <input
                     type="text"
@@ -492,9 +492,9 @@ export default function VaultApp() {
                     value={keeperName}
                     onChange={(e) => setKeeperName(e.target.value)}
                     style={{
-                      ...mono, width: "100%", padding: 10, background: "var(--surface)",
+                      ...mono, width: "100%", padding: "12px 14px", background: "var(--surface)",
                       color: "var(--text)", border: "1px solid var(--border)", borderRadius: "var(--r-sharp)",
-                      fontSize: 13, outline: "none", marginBottom: 12,
+                      fontSize: 13, marginBottom: 12,
                     }}
                   />
                   {keeperError && (
@@ -577,17 +577,18 @@ export default function VaultApp() {
               {!connected ? (
                 <div style={{ textAlign: "center", padding: "32px 0" }}>
                   <div style={{ ...mono, fontSize: 13, color: "var(--text-dim)", marginBottom: 16 }}>
-                    Connect your Stellar wallet to {tab}
+                    Ready to {tab}? Connect your Stellar wallet to get started.
                   </div>
                   <button
                     onClick={handleConnect}
+                    className="ds-focusable"
                     style={{
                       ...mono, padding: "12px 32px", background: "var(--accent)", color: "var(--bg)",
                       border: "none", borderRadius: "var(--r-sharp)", fontSize: 13, fontWeight: 600,
                       cursor: "pointer", letterSpacing: "0.05em",
                     }}
                   >
-                    Connect Wallet
+                    Connect Stellar wallet
                   </button>
                   <div style={{ ...mono, fontSize: 11, color: "var(--text-dim)", marginTop: 12 }}>
                     Freighter · Albedo · xBull · Lobstr · Hana · Rabet
@@ -678,14 +679,14 @@ export default function VaultApp() {
                           : `Shares: ${(vaultShares / 1e7).toFixed(2)}`}
                       </span>
                     </div>
-                    <div style={{ display: "flex", border: "1px solid var(--border)", borderRadius: "var(--r-sharp)", overflow: "hidden" }}>
+                    <div className="input-group" style={{ display: "flex", border: "1px solid var(--border)", borderRadius: "var(--r-sharp)", overflow: "hidden" }}>
                       <input
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder="0.00"
                         style={{
-                          ...mono, flex: 1, padding: 12, background: "var(--surface)",
+                          ...mono, flex: 1, padding: "12px 14px", background: "var(--surface)",
                           color: "var(--text)", border: "none", fontSize: 16, outline: "none",
                           fontVariantNumeric: "tabular-nums",
                         }}
@@ -749,11 +750,11 @@ export default function VaultApp() {
                     }}
                   >
                     {txStatus === "simulating"
-                      ? "Simulating..."
+                      ? "Simulating…"
                       : txStatus === "signing"
-                      ? `Sign in ${walletDisplayName(wallet?.walletId)}...`
+                      ? `Sign in ${walletDisplayName(wallet?.walletId)}…`
                       : txStatus === "submitted"
-                      ? "Confirming on Soroban..."
+                      ? "Confirming on Soroban…"
                       : tab === "deposit"
                       ? "Deposit USDC"
                       : "Withdraw USDC"}
