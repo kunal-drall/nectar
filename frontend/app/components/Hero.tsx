@@ -79,11 +79,13 @@ export default function Hero() {
           </div>
 
           <h1
-            className="stagger-2 font-syne font-800 leading-none mb-6"
+            className="stagger-2 mb-6"
             style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 700,
               color: "var(--text)",
               fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-              lineHeight: 1.05,
+              lineHeight: 1.12,
             }}
           >
             Keeper

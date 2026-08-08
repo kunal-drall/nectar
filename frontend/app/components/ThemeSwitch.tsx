@@ -52,6 +52,7 @@ export default function ThemeSwitch({ compact = false }: { compact?: boolean }) 
             key={id}
             onClick={() => setVibe(id)}
             title={`${label} theme`}
+            aria-label={`${label} theme`}
             aria-pressed={active}
             style={{
               fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.07em",
@@ -59,7 +60,7 @@ export default function ThemeSwitch({ compact = false }: { compact?: boolean }) 
               cursor: "pointer", whiteSpace: "nowrap", border: "none",
               borderLeft: i ? "1px solid var(--border)" : "none",
               background: active ? "var(--accent)" : "transparent",
-              color: active ? "var(--bg)" : "var(--text-dim)", transition: "all 150ms",
+              color: active ? "var(--bg)" : "var(--text-dim)", transition: "all var(--transition-fast)",
             }}
           >
             {compact ? label.slice(0, 1) : label}

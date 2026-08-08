@@ -54,13 +54,13 @@ export default function KeeperRegistry() {
           <div>
             <p
               className="text-xs font-mono mb-2"
-              style={{ color: "var(--text-dim)", letterSpacing: "0.12em" }}
+              style={{ color: "var(--text-dim)", letterSpacing: "0.08em" }}
             >
               ON-CHAIN
             </p>
             <h2
               className="font-syne font-700"
-              style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "var(--text)" }}
+              style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "var(--text)" }}
             >
               KeeperRegistry
             </h2>
@@ -121,16 +121,20 @@ export default function KeeperRegistry() {
           style={{ color: "var(--text-dim)" }}
         >
           Contract:{" "}
-          <a
-            href={`https://stellar.expert/explorer/testnet/contract/${process.env.NEXT_PUBLIC_REGISTRY_CONTRACT ?? ""}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "var(--accent)", textDecoration: "none" }}
-            onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
-            onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
-          >
-            {shortAddr(process.env.NEXT_PUBLIC_REGISTRY_CONTRACT ?? "not deployed")}
-          </a>
+          {process.env.NEXT_PUBLIC_REGISTRY_CONTRACT ? (
+            <a
+              href={`https://stellar.expert/explorer/testnet/contract/${process.env.NEXT_PUBLIC_REGISTRY_CONTRACT}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--accent)", textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
+              onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
+            >
+              {shortAddr(process.env.NEXT_PUBLIC_REGISTRY_CONTRACT)}
+            </a>
+          ) : (
+            <span style={{ color: "var(--text-mute)" }}>Contract not deployed</span>
+          )}
           {" · "}
           <span style={{ color: "var(--text-dim)" }}>Soroban Testnet</span>
         </div>

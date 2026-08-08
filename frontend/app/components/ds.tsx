@@ -35,8 +35,8 @@ export const hfColor = (hf: number): string =>
 // ── keeper / success colors (ported from ui.jsx) ────────────────────────────────
 export const keeperColor = (name: string): string => {
   const map: Record<string, string> = {
-    alpha: "var(--accent)", beta: "var(--info)", gamma: "#9b8cff",
-    delta: "var(--amber)", epsilon: "#f06595", zeta: "var(--text-dim)",
+    alpha: "var(--accent)", beta: "var(--info)", gamma: "var(--keeper-gamma)",
+    delta: "var(--amber)", epsilon: "var(--keeper-epsilon)", zeta: "var(--text-dim)",
   };
   return map[name.replace("keeper-", "")] || "var(--text)";
 };
@@ -70,7 +70,7 @@ export const Pill = ({ color = "var(--text-dim)", fill, children, style }:
 // ── Eyebrow + SectionHead ───────────────────────────────────────────────────────
 export const Eyebrow = ({ children, color = "var(--text-dim)", style }:
   { children: React.ReactNode; color?: string; style?: CSS }) => (
-  <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.12em",
+  <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.08em",
     textTransform: "uppercase", color, margin: 0, ...style }}>{children}</p>
 );
 
@@ -98,27 +98,41 @@ export const Card = ({ children, accent = false, radius = 4, style, ...rest }:
 );
 
 // ── Btn — primary/secondary, hover-invert ────────────────────────────────────────
-export const Btn = ({ primary, href, target, onClick, children, small, style }:
+export const Btn = ({ primary, href, target, onClick, children, small, style, ariaLabel }:
   { primary?: boolean; href?: string; target?: string; onClick?: () => void;
-    children: React.ReactNode; small?: boolean; style?: CSS }) => {
-  const [hover, setHover] = useState(false);
+    children: React.ReactNode; small?: boolean; style?: CSS; ariaLabel?: string }) => {
+  const [active, setActive] = useState(false); // hover OR keyboard focus
   const base: CSS = {
     fontFamily: "var(--font-mono)", fontSize: small ? 12 : 13, letterSpacing: "0.03em",
-    padding: small ? "7px 14px" : "10px 20px", border: "1px solid", borderRadius: 2,
+    padding: small ? "7px 14px" : "10px 20px", border: "1px solid", borderRadius: "var(--r-sharp)",
     textDecoration: "none", cursor: "pointer", display: "inline-flex", alignItems: "center",
-    gap: 8, transition: "all 200ms var(--ease-out)", whiteSpace: "nowrap", ...style,
+    gap: 8, transition: "all var(--transition-standard) var(--ease-out)", whiteSpace: "nowrap", ...style,
   };
   const s: CSS = primary
-    ? hover
+    ? active
       ? { ...base, background: "transparent", color: "var(--accent)", borderColor: "var(--accent)" }
       : { ...base, background: "var(--accent)", color: "var(--bg)", borderColor: "var(--accent)" }
-    : hover
+    : active
       ? { ...base, background: "transparent", color: "var(--text)", borderColor: "var(--text-dim)" }
       : { ...base, background: "transparent", color: "var(--text-dim)", borderColor: "var(--border)" };
+  const handlers = {
+    style: s,
+    className: "ds-focusable",
+    "aria-label": ariaLabel,
+    onMouseEnter: () => setActive(true),
+    onMouseLeave: () => setActive(false),
+    onFocus: () => setActive(true),
+    onBlur: () => setActive(false),
+  };
+  // Render a real <button> for actions, <a> only for navigation.
+  if (href) {
+    return (
+      <a href={href} target={target} rel={target ? "noopener noreferrer" : undefined}
+        onClick={onClick} {...handlers}>{children}</a>
+    );
+  }
   return (
-    <a href={href} target={target} rel={target ? "noopener noreferrer" : undefined}
-      onClick={onClick} style={s}
-      onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>{children}</a>
+    <button type="button" onClick={onClick} {...handlers}>{children}</button>
   );
 };
 

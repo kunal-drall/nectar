@@ -30,7 +30,7 @@ function LogStream({ operators }: { operators: number }) {
   const live = events.some((e) => !/reconnect/i.test(e));
   return (
     <div style={{ border: "1px solid var(--border)", background: "var(--card-fill)", borderRadius: 4, overflow: "hidden" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "11px 16px", borderBottom: "1px solid var(--border)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", borderBottom: "1px solid var(--border)" }}>
         <StatusDot glow={live} color={live ? "var(--accent)" : "var(--text-mute)"} />
         <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)" }}>
           keeper log stream — {live ? "live testnet" : "awaiting keeper API"}
@@ -41,12 +41,12 @@ function LogStream({ operators }: { operators: number }) {
       </div>
       <div ref={ref} className="thin-scroll" style={{ height: 296, overflowY: "auto", padding: 16, display: "flex", flexDirection: "column", gap: 5 }}>
         {!live && (
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11.5, color: "var(--text-mute)" }}>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--text-mute)" }}>
             connect a running keeper (SSE /api/events) to stream live liquidation activity here…
           </div>
         )}
         {events.map((msg, idx) => (
-          <div key={idx} className="logline" style={{ fontFamily: "var(--font-mono)", fontSize: 11.5, color: logColor(msg), wordBreak: "break-word" }}>
+          <div key={idx} className="logline" style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: logColor(msg), wordBreak: "break-word" }}>
             <span style={{ color: "var(--text-mute)" }}>{">"} </span>{msg}
           </div>
         ))}
@@ -101,8 +101,8 @@ export default function HomeHero() {
               border: "1px solid var(--accent)", borderRadius: 2, background: "var(--accent-fill)", whiteSpace: "nowrap" }}>
               <StatusDot /><span>Soroban Testnet — live</span>
             </div>
-            <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(2.6rem, 6vw, 4.4rem)",
-              lineHeight: 1.04, letterSpacing: "-0.015em", color: "var(--text)", margin: "0 0 24px" }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              lineHeight: 1.12, letterSpacing: "-0.015em", color: "var(--text)", margin: "0 0 24px" }}>
               One vault.<br />Many keepers.<br /><span style={{ color: "var(--accent)" }}>No single point<br />of failure.</span>
             </h1>
             <p style={{ fontFamily: "var(--font-mono)", fontSize: 14, lineHeight: 1.75, color: "var(--text-dim)", maxWidth: 460, margin: "0 0 30px" }}>
@@ -111,7 +111,7 @@ export default function HomeHero() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 38 }}>
               <Btn primary href="/vault">Deposit USDC</Btn>
-              <Btn href="/dashboard">Live dashboard →</Btn>
+              <Btn href="/dashboard">View live dashboard →</Btn>
               <Btn href="https://github.com/Nectar-Network/nectar" target="_blank">GitHub</Btn>
             </div>
             <div style={{ display: "flex", gap: 0, borderTop: "1px solid var(--border)", paddingTop: 22 }}>
